@@ -12,7 +12,7 @@ before_script:
 script:
 # maven
 - bash ./mvnw clean package com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up
-- sleep 20
+- sleep 25
 - http :8080/app/
 - bash ./mvnw com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down
 # gradle
