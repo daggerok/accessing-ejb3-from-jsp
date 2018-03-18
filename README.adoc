@@ -1,4 +1,4 @@
-= ejb3ee
+= ejb3ee image:https://travis-ci.org/daggerok/ejb3jsp.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/ejb3jsp"]
 
 Please, don't ask why...
 Accessing EJB3 from JSP page.
