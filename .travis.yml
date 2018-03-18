@@ -1,0 +1,30 @@
+service:
+- docker
+env:
+  global:
+  - TERM=dumb
+language: java
+install: true
+before_script:
+- sudo apt update -y || true
+- sudo apt install -y --no-install-recommends docker-ce python-pip
+- sudo pip install docker-compose httpie
+script:
+# maven
+- bash ./mvnw clean package com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up
+- sleep 20
+- http :8080/app/
+- bash ./mvnw com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down
+# gradle
+- bash ./gradlew clean composeUp
+- http :8080/app/
+- bash ./gradlew composeDown
+# gradle maven prfile
+- bash ./mvnw
+- bash ./gradlew composeUp -Pprofile=maven
+- http :8080/app/
+- bash ./gradlew composeDown
+cache:
+  directories:
+  - $HOME/.m2
+  - $HOME/.gradle
